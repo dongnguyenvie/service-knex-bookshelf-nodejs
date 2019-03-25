@@ -21,9 +21,8 @@ run cmd:
 - knex seed:run
 ```
 ### Using docker-compose
-CMD
 ```
-build images & container & start server
+build images & container & start docker
 step 1: docker-compose build
 step 2: docker-compose up
 ```
