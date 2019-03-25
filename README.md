@@ -22,6 +22,8 @@ run cmd:
 ```
 ### Using docker-compose
 CMD
+```
 build images & container & start server
 step 1: docker-compose build
 step 2: docker-compose up
+```
