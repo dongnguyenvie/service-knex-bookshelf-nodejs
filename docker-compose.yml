@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+    dong_mysql:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        environment:
+        - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+        - MYSQL_DATABASE=${DB_NAME}
+        ports:
+        - 127.0.0.1:3306:3306/tcp
+    dong_nodejs:
+        container_name: dong_nodejs_name
+        build:
+            context: .
+            dockerfile: ./docker_compose/nodejs/Dockerfile
+        command: /start.sh
+        depends_on:
+            - dong_mysql
+        environment:
+            - DB_HOST=dong_mysql
+            - DB_NAME=${DB_NAME}
+            - DB_USER=${DB_USER}
+            - DB_PASSWORD=${DB_PASSWORD}
+        links:
+            - dong_mysql
+        ports:
+            - 3000:3000
